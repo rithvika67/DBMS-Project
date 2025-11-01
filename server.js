@@ -51,7 +51,9 @@ if (!process.env.MONGO_URI || typeof process.env.MONGO_URI !== 'string' || proce
   process.exit(1);
 }
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// Connect using the default recommended options for the current MongoDB driver.
+// Avoid passing deprecated `useNewUrlParser` and `useUnifiedTopology` options.
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB');
   })
